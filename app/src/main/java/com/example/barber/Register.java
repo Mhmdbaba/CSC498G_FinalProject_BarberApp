@@ -31,13 +31,17 @@ public class Register extends AppCompatActivity {
             reg_name = (String) findViewById(R.id.input_reg_name).toString();
             reg_email = (String) findViewById(R.id.input_reg_email).toString();
             reg_username = (String) findViewById(R.id.input_reg_username).toString();
-            reg_password = findViewById(R.id.input_password).toString();
-            reg_conf_password = findViewById(R.id.input_reg_conf_password).toString();
+            reg_password = (String) findViewById(R.id.input_password).toString();
+            reg_conf_password = (String) findViewById(R.id.input_reg_conf_password).toString();
 
             //check if username and email already found in database
             //check passwords, if they match
             //insert credentials to database
             //direct to home page
+
+            if (reg_password.equals(reg_conf_password)){
+
+            }
 
             /*Intent intent = new Intent(this, HomePage.class);
             startActivity(intent);*/
