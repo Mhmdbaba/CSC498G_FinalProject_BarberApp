@@ -9,7 +9,7 @@
     <Button
         android:id="@+id/button4"
         android:layout_width="160dp"
-        android:layout_height="35dp"
+        android:layout_height="48dp"
         android:background="@drawable/rounded_corner"
         android:onClick="Button"
         android:tag="signup"
@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.394"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.793" />
+        app:layout_constraintVertical_bias="0.8" />
 
     <TextView
         android:id="@+id/textView4"
