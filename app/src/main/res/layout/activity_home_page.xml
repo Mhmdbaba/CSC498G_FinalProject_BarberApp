@@ -151,6 +151,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <HorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -161,6 +162,31 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_width="155dp"
+                    android:layout_height="150dp"
+                    android:paddingRight="10dp"
+                    app:srcCompat="@drawable/treatment" />
+                <ImageView
+                    android:layout_width="155dp"
+                    android:layout_height="150dp"
+                    android:paddingRight="10dp"
+                    app:srcCompat="@drawable/treatment" />
+                <ImageView
+                    android:layout_width="155dp"
+                    android:layout_height="150dp"
+                    android:paddingRight="10dp"
+                    app:srcCompat="@drawable/treatment" />
+                <ImageView
+                    android:layout_width="155dp"
+                    android:layout_height="150dp"
+                    android:paddingRight="10dp"
+                    app:srcCompat="@drawable/treatment" />
+                <ImageView
+                    android:layout_width="155dp"
+                    android:layout_height="150dp"
+                    android:paddingRight="10dp"
+                    app:srcCompat="@drawable/treatment" />
             </LinearLayout>
         </HorizontalScrollView>
     </ScrollView>
