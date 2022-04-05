@@ -73,6 +73,7 @@
         app:layout_constraintVertical_bias="0.52">
 
         <CheckBox
+            android:id="@+id/cb_haircut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Haircut"
@@ -80,6 +81,7 @@
             tools:layout_editor_absoluteY="281dp" />
 
         <CheckBox
+            android:id="@+id/cb_beardtrim"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Beard Trim"
@@ -87,6 +89,7 @@
             tools:layout_editor_absoluteY="281dp" />
 
         <CheckBox
+            android:id="@+id/cb_hottowel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hot Towels"
@@ -94,6 +97,7 @@
             tools:layout_editor_absoluteY="281dp" />
 
         <CheckBox
+            android:id="@+id/cb_scalpmessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Scalp massage"
@@ -101,6 +105,7 @@
             tools:layout_editor_absoluteY="281dp" />
 
         <CheckBox
+            android:id="@+id/cb_antidandruff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Anti-dandruff remedies"
