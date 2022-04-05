@@ -55,7 +55,7 @@ public class Book extends AppCompatActivity {
                 selected.add(cb_antidandruff.getText().toString());
 
             //make sure that values are selected
-            if (sp.getSelectedItem() == null && selected.isEmpty())
+            if (sp.getSelectedItem() == null && !selected.isEmpty())
                 Toast.makeText(this, "Please fill the required blanks!", Toast.LENGTH_LONG);
              else if (sp.getSelectedItem() == null && !selected.isEmpty())
                 Toast.makeText(this, "Please fill the required blanks!", Toast.LENGTH_LONG);

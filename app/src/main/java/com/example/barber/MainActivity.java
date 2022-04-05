@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
             //check the user credentials in database and direct the user to home page
             input_username = ((EditText) findViewById(R.id.input_username)).getText().toString();
             input_password = ((EditText) findViewById(R.id.input_password)).getText().toString();
-            if (input_password != null && input_username != null){
+
+
+            if (!input_password.isEmpty() && !input_username.isEmpty()){
+
                 //check if username and password are found in database
                 Intent intent = new Intent(this, HomePage.class);
                 startActivity(intent);
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this,"Please enter username and password", Toast.LENGTH_LONG).show();
                 return;
             }
+
 
         }
         else if (btn.getTag().toString().equalsIgnoreCase(("register"))){
