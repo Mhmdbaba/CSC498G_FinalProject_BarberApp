@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Register extends AppCompatActivity {
 
@@ -32,24 +33,29 @@ public class Register extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
-        else if (btn.getTag().toString().equalsIgnoreCase("signup")){
-            reg_name = (String) findViewById(R.id.input_reg_name).toString();
-            reg_email = (String) findViewById(R.id.input_reg_email).toString();
-            reg_username = (String) findViewById(R.id.input_reg_username).toString();
-            reg_password = (String) findViewById(R.id.input_password).toString();
-            reg_conf_password = (String) findViewById(R.id.input_reg_conf_password).toString();
+        if (btn.getTag().toString().equalsIgnoreCase("signup")){
+            reg_name = ((EditText) findViewById(R.id.input_reg_name)).getText().toString();
+            reg_email = ((EditText) findViewById(R.id.input_reg_email)).getText().toString();
+            reg_username = ((EditText) findViewById(R.id.input_reg_username)).getText().toString();
+            reg_password = ((EditText) findViewById(R.id.input_reg_password)).getText().toString();
+            reg_conf_password = ((EditText) findViewById(R.id.input_reg_conf_password)).getText().toString();
 
-            //check if username and email already found in database
-            //check passwords, if they match
-            //insert credentials to database
-            //direct to home page
-
-            if (reg_password.equals(reg_conf_password)){
-
-            }
+            if (!reg_name.isEmpty() && !reg_username.isEmpty() && !reg_email.isEmpty() && !reg_password.isEmpty()
+            && !reg_conf_password.isEmpty()){
+                //1 check if username and email already found in database
+                //2 check passwords, if they match
+                //3 insert credentials to database
+                //4 direct to home page
+            
 
             /*Intent intent = new Intent(this, HomePage.class);
             startActivity(intent);*/
+            } else {
+                Toast.makeText(this, "Enter all Fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            
+
         }
     }
 }

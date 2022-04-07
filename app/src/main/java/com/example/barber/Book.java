@@ -2,6 +2,7 @@ package com.example.barber;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -55,18 +56,23 @@ public class Book extends AppCompatActivity {
                 selected.add(cb_antidandruff.getText().toString());
 
             //make sure that values are selected
-            if (sp.getSelectedItem() == null && !selected.isEmpty())
-                Toast.makeText(this, "Please fill the required blanks!", Toast.LENGTH_LONG);
-             else if (sp.getSelectedItem() == null && !selected.isEmpty())
-                Toast.makeText(this, "Please fill the required blanks!", Toast.LENGTH_LONG);
-             else if (sp.getSelectedItem() != null && selected.isEmpty())
-                Toast.makeText(this, "Please fill the required blanks!", Toast.LENGTH_LONG);
-             else {
-                 //get time selected by user
-                 selected_time = sp.getSelectedItem().toString();
 
-                 //send the selected time and selected items to database
+            if(sp.getSelectedItem() != null && !selected.isEmpty()){
+                //get time selected by user
+                selected_time = sp.getSelectedItem().toString();
+
+                //send the selected time and selected items to database
+
+            }else{
+                Toast.makeText(this, "Please fill the required blanks!", Toast.LENGTH_LONG);
+                return;
             }
+
+
+        }
+        if (btn.getTag().toString().equalsIgnoreCase("back")){
+            Intent intent = new Intent(this, HomePage.class);
+            startActivity(intent);
         }
 
     }

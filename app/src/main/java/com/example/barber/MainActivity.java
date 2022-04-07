@@ -47,9 +47,19 @@ public class MainActivity extends AppCompatActivity {
 
             if (!input_password.isEmpty() && !input_username.isEmpty()){
 
+                if (input_username.equals("admin") && input_password.equals("admin123")){
+                    Intent intent = new Intent(this, HomePage.class);
+                    startActivity(intent);
+                }
+                /*
                 //check if username and password are found in database
                 Intent intent = new Intent(this, HomePage.class);
                 startActivity(intent);
+                */
+                else{
+                    Toast.makeText(this,"Please enter username and password", Toast.LENGTH_LONG).show();
+                    return;
+                }
             }
             else{
                 Toast.makeText(this,"Please enter username and password", Toast.LENGTH_LONG).show();
