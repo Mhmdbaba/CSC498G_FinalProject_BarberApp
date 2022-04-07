@@ -44,19 +44,19 @@ public class Book extends AppCompatActivity {
         if (btn.getTag().toString().equalsIgnoreCase("book")){
             //get the values checked and add them to an array;
             if (cb_haircut.isChecked())
-                selected.add("haircut");
+                selected.add("Haircut");
             if (cb_beardtrim.isChecked())
-                selected.add(cb_beardtrim.getText().toString());
+                selected.add("Beard Trim");
             if (cb_hottowels.isChecked())
-                selected.add(cb_hottowels.getText().toString());
+                selected.add("Hot Towels");
             if (cb_scalpmassage.isChecked())
-                selected.add(cb_scalpmassage.getText().toString());
+                selected.add("Scalp Massage");
             if (cb_antidandruff.isChecked())
-                selected.add(cb_antidandruff.getText().toString());
+                selected.add("Anti-dandruff Remedies");
 
             //make sure that values are selected
 
-            if(sp.getSelectedItem() != null && !selected.isEmpty()){
+            if(!sp.getSelectedItem().toString().isEmpty() && !selected.isEmpty()){
                 //get time selected by user
                 selected_time = sp.getSelectedItem().toString();
 
