@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -33,6 +34,7 @@ public class Book extends AppCompatActivity {
         cb_hottowels = (CheckBox) findViewById(R.id.cb_hottowel);
         cb_scalpmassage = (CheckBox) findViewById(R.id.cb_scalpmassage);
         cb_antidandruff = (CheckBox) findViewById(R.id.cb_antidandruff);
+        sp = (Spinner) findViewById(R.id.spinner);
 
         //Get the available time slots from database and add them to spinner (sp) by array adapter
 
@@ -54,8 +56,8 @@ public class Book extends AppCompatActivity {
             if (cb_antidandruff.isChecked())
                 selected.add("Anti-dandruff Remedies");
 
-            //make sure that values are selected
 
+            //make sure that values are selected
             if(!sp.getSelectedItem().toString().isEmpty() && !selected.isEmpty()){
                 //get time selected by user
                 selected_time = sp.getSelectedItem().toString();
@@ -68,7 +70,6 @@ public class Book extends AppCompatActivity {
                 Toast.makeText(this, "Please fill the required blanks!", Toast.LENGTH_LONG);
                 return;
             }
-
 
         }
         if (btn.getTag().toString().equalsIgnoreCase("back")){
