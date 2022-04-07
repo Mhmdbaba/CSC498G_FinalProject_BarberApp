@@ -10,7 +10,6 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.sql.Time;
 import java.util.ArrayList;
 
 public class Book extends AppCompatActivity {
@@ -32,7 +31,7 @@ public class Book extends AppCompatActivity {
         cb_haircut = (CheckBox) findViewById(R.id.cb_haircut);
         cb_beardtrim = (CheckBox) findViewById(R.id.cb_beardtrim);
         cb_hottowels = (CheckBox) findViewById(R.id.cb_hottowel);
-        cb_scalpmassage = (CheckBox) findViewById(R.id.cb_scalpmessage);
+        cb_scalpmassage = (CheckBox) findViewById(R.id.cb_scalpmassage);
         cb_antidandruff = (CheckBox) findViewById(R.id.cb_antidandruff);
 
         //Get the available time slots from database and add them to spinner (sp) by array adapter
@@ -45,7 +44,7 @@ public class Book extends AppCompatActivity {
         if (btn.getTag().toString().equalsIgnoreCase("book")){
             //get the values checked and add them to an array;
             if (cb_haircut.isChecked())
-                selected.add(cb_haircut.getText().toString());
+                selected.add("haircut");
             if (cb_beardtrim.isChecked())
                 selected.add(cb_beardtrim.getText().toString());
             if (cb_hottowels.isChecked())
@@ -63,6 +62,8 @@ public class Book extends AppCompatActivity {
 
                 //send the selected time and selected items to database
 
+                Intent intent = new Intent(this, Register.class);
+                startActivity(intent);
             }else{
                 Toast.makeText(this, "Please fill the required blanks!", Toast.LENGTH_LONG);
                 return;
