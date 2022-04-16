@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.907" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/sp_category"
         android:layout_width="130dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/black"
@@ -95,6 +95,7 @@
                 android:layout_width="150sp"
                 android:layout_height="wrap_content"
                 android:text="Name"
+                android:textAlignment="center"
                 android:textSize="25dp" />
 
             <TextView
@@ -102,6 +103,7 @@
                 android:layout_width="125sp"
                 android:layout_height="wrap_content"
                 android:text="Time"
+                android:textAlignment="center"
                 android:textSize="25dp" />
 
             <TextView
@@ -135,8 +137,8 @@
         android:text="Attach image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.798" />
+        app:layout_constraintVertical_bias="0.812" />
 </androidx.constraintlayout.widget.ConstraintLayout>

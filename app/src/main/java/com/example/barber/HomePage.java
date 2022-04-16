@@ -45,7 +45,7 @@ public class HomePage extends AppCompatActivity {
     }
 
     public void Button(View view){
-        Button btn = (Button) view;
+        TextView btn = (TextView) view;
         if (btn.getTag().toString().equalsIgnoreCase("logout")){
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
