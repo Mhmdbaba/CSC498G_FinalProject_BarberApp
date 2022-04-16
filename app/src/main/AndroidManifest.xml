@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Barber">
         <activity
+            android:name=".admin"
+            android:exported="false" />
+        <activity
             android:name=".Book"
             android:exported="false" />
         <activity

@@ -8,6 +8,23 @@
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="-3dp">
 
+    <TextView
+        android:id="@+id/tv_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="Button"
+        android:tag="admin"
+        android:text="Admin"
+        android:textSize="24sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.021" />
+
     <Button
         android:id="@+id/button6"
         android:layout_width="wrap_content"
