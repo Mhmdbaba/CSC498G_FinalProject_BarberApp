@@ -54,5 +54,9 @@ public class HomePage extends AppCompatActivity {
             Intent intent = new Intent(this,admin.class);
             startActivity(intent);
         }
+        if (btn.getText().toString().equalsIgnoreCase("catalogue")){
+            Intent intent = new Intent(this, Catalogue.class);
+            startActivity(intent);
+        }
     }
 }

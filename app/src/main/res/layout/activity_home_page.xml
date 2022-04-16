@@ -175,7 +175,7 @@
     </ScrollView>
 
     <ScrollView
-        android:id="@+id/scrollView4"
+        android:id="@+id/scrollview4"
         android:layout_width="413dp"
         android:layout_height="151dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -256,7 +256,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/button6"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView4"
+        app:layout_constraintTop_toBottomOf="@+id/scrollview4"
         app:layout_constraintVertical_bias="0.684" />
 
     <TextView
