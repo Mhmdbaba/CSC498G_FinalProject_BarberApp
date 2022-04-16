@@ -50,6 +50,7 @@ public class HomePage extends AppCompatActivity {
         }
         if(btn.getTag().toString().equalsIgnoreCase("admin")){
             Intent intent = new Intent(this,admin.class);
+            startActivity(intent);
         }
     }
 }
