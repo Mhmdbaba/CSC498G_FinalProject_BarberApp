@@ -17,11 +17,13 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        tv_admin = (TextView) findViewById(R.id.tv_admin);
+        //tv_admin = (TextView) findViewById(R.id.tv_admin);
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
         if (!username.equalsIgnoreCase("admin"))
             tv_admin.setVisibility(View.INVISIBLE);
+
+
 
     }
 

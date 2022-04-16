@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".admin">
 
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="Button"
+        android:tag="back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022"
+        app:srcCompat="@drawable/back" />
+
     <Button
         android:id="@+id/button7"
         android:layout_width="160dp"
@@ -13,28 +27,13 @@
         android:background="@drawable/rounded_corner"
         android:onClick="Button"
         android:tag="add"
-        android:text="Add product"
+        android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.91" />
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="160dp"
-        android:layout_height="48dp"
-        android:background="@drawable/rounded_corner"
-        android:onClick="Button"
-        android:tag="view"
-        android:text="View products"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.853"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.91" />
+        app:layout_constraintVertical_bias="0.907" />
 
     <Spinner
         android:id="@+id/spinner2"
