@@ -25,7 +25,7 @@ public class admin extends AppCompatActivity {
 
         sp_cate = (Spinner) findViewById(R.id.sp_category);
         arr.add("Select");
-        arr.add("Haircut");
+        arr.add("Haircuts");
         arr.add("Treatments");
         arr.add("Hair Gel & Wax");
         arr.add("Oils");

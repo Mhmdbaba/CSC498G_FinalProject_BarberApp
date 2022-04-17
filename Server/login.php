@@ -7,7 +7,9 @@ $username = $_POST["username"];
 $password = $_POST["password"];
 */
 
-$str = 'SELECT username FROM users WHERE username = "' + $username + '"';
+$username = "mhmdbaba";
+
+$str = 'SELECT id, username FROM users WHERE username = "' . $username . '"';
 
 $query = $conn->prepare($str);
 $query->execute();
@@ -25,6 +27,10 @@ if ($isEmpty){
     echo "false";
 }
 else{
+    session_start();
+    $_SESSION["username"] = $username;
+    $_SESSION["id"] = $response[0]['id'];
+
     echo "true";
 }
 
