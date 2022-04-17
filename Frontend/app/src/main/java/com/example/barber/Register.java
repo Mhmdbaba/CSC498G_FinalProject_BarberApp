@@ -10,9 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class Register extends AppCompatActivity {
 
@@ -21,6 +25,7 @@ public class Register extends AppCompatActivity {
     String reg_email;
     String reg_password;
     String reg_conf_password;
+    boolean cont;
 
     public class Register_db extends AsyncTask<String, Void, String>{
 
@@ -36,17 +41,23 @@ public class Register extends AppCompatActivity {
                 http = (HttpURLConnection) url.openConnection();
                 http.setRequestMethod("POST");
                 http.setRequestProperty("Content-Type", "application/json; utf-8");
+                http.setRequestProperty( "charset", "utf-8");
                 http.setRequestProperty("Accept", "application/json");
                 http.setDoOutput(true);
 
                 String jsonInputString = "{username:" + reg_username + "," +
                         "password:" + reg_password + "email:" + reg_email + "name:" + reg_name + "}";
 
-                OutputStream os = http.getOutputStream();
-                byte[] input = jsonInputString.getBytes("utf-8");
-                os.write(input, 0, input.length);
+                String urlParams = "username=" + reg_username + "&password=" + reg_password +
+                        "&email=" + reg_email + "&name=" + reg_name;
+                byte[] postData = urlParams.getBytes( StandardCharsets.UTF_8 );
+                int postDataLength = postData.length;
 
-                /*
+                DataOutputStream wr = new DataOutputStream(http.getOutputStream());
+                wr.write(postData);
+
+
+
                 InputStream in = http.getInputStream();
                 InputStreamReader reader = new InputStreamReader(in);
                 int data= reader.read();
@@ -55,12 +66,19 @@ public class Register extends AppCompatActivity {
                     char curr = (char) data;
                     result +=curr;
                     data = reader.read();
-                }*/
+                }
             }catch (Exception e){
                 e.printStackTrace();
                 return null;
             }
             return result;
+        }
+        protected void onPostExecute (String s){
+            super.onPostExecute(s);
+            if (s.equalsIgnoreCase("true"))
+                cont = true;
+            else
+                cont = false;
         }
     }
 
@@ -91,11 +109,18 @@ public class Register extends AppCompatActivity {
 
             if (!reg_name.isEmpty() && !reg_username.isEmpty() && !reg_email.isEmpty() && !reg_password.isEmpty()
             && !reg_conf_password.isEmpty()){
-                //1 check if username and email already found in database
-                //2 check passwords, if they match
-                //3 insert credentials to database
-                //4 direct to home page
-            
+                //check passwords, if they match
+                if (reg_password.equals(reg_conf_password)){
+                    //insert credentials to database
+                    String url = "http://192.168.157.1/BarberServer/Register.php";
+                    Register_db r = new Register_db();
+                    r.execute(url);
+                    //4 direct to home page
+                }
+                else {
+                    Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
             /*Intent intent = new Intent(this, HomePage.class);
             startActivity(intent);*/
