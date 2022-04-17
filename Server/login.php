@@ -4,7 +4,7 @@ include("db_info.php");
 
 
 if ($conn){
-    $query = "select * from users where";
+    echo "connection successfull";
 }
 else{
     echo "Not connected....!";
