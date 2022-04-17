@@ -2,14 +2,12 @@
 
 include("db_info.php");
 
-/*
+
 $username = $_POST["username"];
 $password = $_POST["password"];
-*/
+$password = hash("sha256", $password); //hashing the password
 
-$username = "mhmdbaba";
-
-$str = 'SELECT id, username FROM users WHERE username = "' . $username . '"';
+$str = 'SELECT id, username FROM users WHERE username = "' . $username . '" and password = "' . '"' . $password . '"';
 
 $query = $conn->prepare($str);
 $query->execute();
@@ -33,5 +31,4 @@ else{
 
     echo "true";
 }
-
 ?>

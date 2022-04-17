@@ -16,6 +16,4 @@ while ($arr = $array->fetch_assoc()){
 }
 
 echo json_encode($response);
-
-
 ?>
