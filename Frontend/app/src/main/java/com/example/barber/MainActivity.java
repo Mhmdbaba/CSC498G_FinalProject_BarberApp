@@ -23,9 +23,10 @@ public class MainActivity extends AppCompatActivity {
 
     String input_username;
     String input_password;
+    boolean found_in_db;
 
 
-    public class DownloadTask extends AsyncTask<String, Void, String>{
+    public class Login extends AsyncTask<String, Void, String>{
         @Override
         protected String doInBackground(String... urls) {
             String result = "";
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 url = new URL(urls[0]);
                 http = (HttpURLConnection) url.openConnection();
+                http.setRequestMethod("POST");
 
                 InputStream in = http.getInputStream();
                 InputStreamReader reader = new InputStreamReader(in);
@@ -51,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
             }
             return result;
         }
+
+        protected void onPostExecute (String s){
+            super.onPostExecute(s);
+            if (s.equalsIgnoreCase("true"))
+                    found_in_db = true;
+            else
+                found_in_db = false;
+        }
     }
 
 
@@ -60,14 +70,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        String url = "http://192.168.157.1/BarberServer/login.php";
-        DownloadTask task = new DownloadTask();
-        task.execute(url);
 
     }
 
     public void Button(View view){
         Button btn = (Button) view;
+        found_in_db = false;
 
         if (btn.getTag().toString().equalsIgnoreCase("forgot")){
             //In case the user forgets password
@@ -82,20 +90,27 @@ public class MainActivity extends AppCompatActivity {
             input_username = ((EditText) findViewById(R.id.input_username)).getText().toString();
             input_password = ((EditText) findViewById(R.id.input_password)).getText().toString();
 
-
             if (!input_password.isEmpty() && !input_username.isEmpty()){
-
                 if (input_username.equals("admin") && input_password.equals("admin123")){
                     Intent intent = new Intent(this, HomePage.class);
                     intent.putExtra("username",input_username);
                     startActivity(intent);
                 }
-                /*
-                //check if username and password are found in database
-                Intent intent = new Intent(this, HomePage.class);
-                intent.putExtra("username",input_username);
-                startActivity(intent);
-                 */
+                else if (!input_username.equals("admin") && !input_password.equals("admin123")){
+                    String url = "http://192.168.157.1/BarberServer/checkInDatabase.php";
+                    Login lg = new Login ();
+                    lg.execute(url);
+                    if (found_in_db){
+                        //continue to homepage
+                        Intent intent = new Intent(this, HomePage.class);
+                        intent.putExtra("username",input_username);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(this,"Please enter correct username and password", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
                 else{
                     Toast.makeText(this,"Please enter username and password", Toast.LENGTH_LONG).show();
                     return;
