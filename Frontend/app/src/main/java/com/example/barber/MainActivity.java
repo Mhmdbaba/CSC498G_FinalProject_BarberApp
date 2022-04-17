@@ -14,6 +14,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.lang.reflect.MalformedParameterizedTypeException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -37,7 +38,18 @@ public class MainActivity extends AppCompatActivity {
                 url = new URL(urls[0]);
                 http = (HttpURLConnection) url.openConnection();
                 http.setRequestMethod("POST");
+                http.setRequestProperty("Content-Type", "application/json; utf-8");
+                http.setRequestProperty("Accept", "application/json");
+                http.setDoOutput(true);
 
+                String jsonInputString = "{username:" + input_username + "," +
+                        "password:" + input_password + "}";
+
+                OutputStream os = http.getOutputStream();
+                byte[] input = jsonInputString.getBytes("utf-8");
+                os.write(input, 0, input.length);
+
+                /*
                 InputStream in = http.getInputStream();
                 InputStreamReader reader = new InputStreamReader(in);
                 int data= reader.read();
@@ -46,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     char curr = (char) data;
                     result +=curr;
                     data = reader.read();
-                }
+                }*/
             }catch (Exception e){
                 e.printStackTrace();
                 return null;
