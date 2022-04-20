@@ -39,6 +39,8 @@ public class Register extends AppCompatActivity {
             try {
                 url = new URL(urls[0]);
                 http = (HttpURLConnection) url.openConnection();
+
+                //set request method
                 http.setRequestMethod("POST");
                 http.setRequestProperty("Content-Type", "application/json; utf-8");
                 http.setRequestProperty( "charset", "utf-8");

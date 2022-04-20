@@ -9,8 +9,11 @@ if ($getcate == "item"){
     //getting values from POST request
     $name = $_GET["name"];
     $category = $_GET["category"];
-    $picture = $_GET['picture'];
-    $price = $_GET['price'];
+    $picture = $_GET["picture"];
+    $price = $_GET["price"];
+
+    $decodedImage = base64_decode("$image");
+    file_put_contents("pictures/" . $name . ".JPEG" . $decodedImage);
 
     $query = $conn->prepare("INSERT INTO users (name, category, picture, price) VALUES (?, ?, ?, ?)");
     $query->bind_param("sssd", $name, $category, $picture, $price);
