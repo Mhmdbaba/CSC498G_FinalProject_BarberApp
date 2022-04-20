@@ -17,11 +17,15 @@ import android.widget.Spinner;
 
 
 import org.apache.http.params.HttpConnectionParams;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -108,31 +112,60 @@ public class admin extends AppCompatActivity {
             String encoded = Base64.getEncoder().encodeToString(bytes);
 
             ArrayList<String> data_to_send = new ArrayList<>();
-            data_to_send.add(name);
-            data_to_send.add(price);
-            data_to_send.add(category);
-            data_to_send.add(encoded);
+            JSONObject jsonObject = new JSONObject();
+
 
             URL url;
-            HttpURLConnection http;
+            HttpURLConnection http = null;
             OutputStream out = null;
+            InputStream in = null;
 
             try {
+                jsonObject.put("getcate","item");
+                jsonObject.put("name",name);
+                jsonObject.put("price",price);
+                jsonObject.put("category", category);
+                String message = jsonObject.toString();
+
                 url = new URL(urls[0]);
                 http = (HttpURLConnection) url.openConnection();
 
                 //request setup
                 http.setRequestMethod("POST");
+                http.setDoInput(true);
                 http.setDoOutput(true);
+                http.setFixedLengthStreamingMode(message.getBytes().length);
+
+                http.setRequestProperty("Content-Type","application/json;charset=utf-8");
+                http.setRequestProperty("X-Request-With","XMLHttpRequest");
+
+                http.connect();
 
                 out = new BufferedOutputStream(http.getOutputStream());
-                BufferedWriter buff_writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
-                buff_writer.write(data_to_send);
-                
+                out.write(message.getBytes());
+                out.flush();
 
-            } catch (Exception e){
+                in = http.getInputStream();;
+
+
+            } catch (IOException e){
                 e.printStackTrace();
                 return null;
+            } catch (JSONException e){
+                e.printStackTrace();
+                return null;
+            } finally {
+
+                try{
+                    out.close();
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+                http.disconnect();
+
+
             }
 
 
