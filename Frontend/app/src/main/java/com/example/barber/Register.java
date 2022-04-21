@@ -10,7 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -29,51 +35,70 @@ public class Register extends AppCompatActivity {
 
     public class Register_db extends AsyncTask<String, Void, String>{
 
+        String name, username, email, password;
+
+        public  Register_db (String name, String username, String email, String password){
+            this.name = name;
+            this.username = username;
+            this.email = email;
+            this.password = password;
+        }
+
         @Override
         protected String doInBackground(String... urls) {
-            String result = "";
+            JSONObject jsonObject = new JSONObject();
+
             URL url;
-            HttpURLConnection http;
+            HttpURLConnection http = null;
+            OutputStream out = null;
+            InputStream in = null;
 
+            try{
+                jsonObject.put("username", username);
+                jsonObject.put("name",name);
+                jsonObject.put("email",email);
+                jsonObject.put("password",password);
+                String message = jsonObject.toString();
 
-            try {
                 url = new URL(urls[0]);
                 http = (HttpURLConnection) url.openConnection();
 
-                //set request method
+                //request setup
                 http.setRequestMethod("POST");
-                http.setRequestProperty("Content-Type", "application/json; utf-8");
-                http.setRequestProperty( "charset", "utf-8");
-                http.setRequestProperty("Accept", "application/json");
+                http.setDoInput(true);
                 http.setDoOutput(true);
+                http.setFixedLengthStreamingMode(message.getBytes().length);
 
-                String jsonInputString = "{username:" + reg_username + "," +
-                        "password:" + reg_password + "email:" + reg_email + "name:" + reg_name + "}";
+                http.setRequestProperty("Content-Type","application/json;charset=utf-8");
+                http.setRequestProperty("X-Request-With","XMLHttpRequest");
 
-                String urlParams = "username=" + reg_username + "&password=" + reg_password +
-                        "&email=" + reg_email + "&name=" + reg_name;
-                byte[] postData = urlParams.getBytes( StandardCharsets.UTF_8 );
-                int postDataLength = postData.length;
+                http.connect();
 
-                DataOutputStream wr = new DataOutputStream(http.getOutputStream());
-                wr.write(postData);
+                out = new BufferedOutputStream(http.getOutputStream());
+                out.write(message.getBytes());
+                out.flush();
+
+                in = http.getInputStream();;
 
 
-
-                InputStream in = http.getInputStream();
-                InputStreamReader reader = new InputStreamReader(in);
-                int data= reader.read();
-
-                while (data != -1){
-                    char curr = (char) data;
-                    result +=curr;
-                    data = reader.read();
-                }
-            }catch (Exception e){
+            } catch (IOException e){
                 e.printStackTrace();
                 return null;
+            } catch (JSONException e){
+                e.printStackTrace();
+                return null;
+            } finally {
+
+                try{
+                    out.close();
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+                http.disconnect();
             }
-            return result;
+            return  null;
         }
         protected void onPostExecute (String s){
             super.onPostExecute(s);
@@ -115,9 +140,9 @@ public class Register extends AppCompatActivity {
                 if (reg_password.equals(reg_conf_password)){
                     //insert credentials to database
                     String url = "http://192.168.157.1/BarberServer/Register.php";
-                    Register_db r = new Register_db();
+                    Register_db r = new Register_db(reg_name,reg_username,reg_email,reg_password);
                     r.execute(url);
-                    //4 direct to home page
+                    //direct to home page if credentials are not found in database
                 }
                 else {
                     Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();

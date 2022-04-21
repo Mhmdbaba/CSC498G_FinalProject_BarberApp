@@ -111,7 +111,6 @@ public class admin extends AppCompatActivity {
             byte[] bytes = byteArrayOutputStream.toByteArray();
             String encoded = Base64.getEncoder().encodeToString(bytes);
 
-            ArrayList<String> data_to_send = new ArrayList<>();
             JSONObject jsonObject = new JSONObject();
 
 
@@ -164,12 +163,7 @@ public class admin extends AppCompatActivity {
                     return null;
                 }
                 http.disconnect();
-
-
             }
-
-
-
             return null;
         }
 
