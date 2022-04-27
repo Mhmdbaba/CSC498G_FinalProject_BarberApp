@@ -17,6 +17,8 @@ if ($getcate == "item"){
 
     $query = $conn->prepare("INSERT INTO users (name, category, picture, price) VALUES (?, ?, ?, ?)");
     $query->bind_param("sssd", $name, $category, $picture, $price);
+	$query->execute();
+	echo json_encode(true);
 }
 //insert appointment into database
 else if ($getcate == "appointment"){
@@ -27,6 +29,7 @@ else if ($getcate == "appointment"){
     
     $query = $conn->prepare("INSERT INTO appointments (what, timeslots_id, date, user_id, active) VALUES (?, ?, ?, ?, ?)");
     $query->bind_param("sdsdd", $name, $category, $picture, $price, 1);
+	$query->execute();
 }
 //get the clients actuve appointments
 else if ($getcate == "admin"){

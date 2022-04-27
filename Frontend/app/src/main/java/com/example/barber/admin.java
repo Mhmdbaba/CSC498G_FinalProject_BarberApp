@@ -72,7 +72,7 @@ public class admin extends AppCompatActivity {
             price = (String) findViewById(R.id.input_admin_price).toString();
             name = (String) findViewById(R.id.input_admin_product_name).toString();
             category = (String) sp_cate.getSelectedItem().toString();
-            String url = "http://192.168.157.1/BarberServer/GET_REQUEST.php";
+            String url = "http://192.168.157.1/BarberServer/GET_REQUEST.php?id=5";
             Upload up = new Upload(name, price, category, image);
             up.execute(url);
 
@@ -129,22 +129,11 @@ public class admin extends AppCompatActivity {
                 url = new URL(urls[0]);
                 http = (HttpURLConnection) url.openConnection();
 
-                //request setup
-                http.setRequestMethod("POST");
-                http.setDoInput(true);
-                http.setDoOutput(true);
-                http.setFixedLengthStreamingMode(message.getBytes().length);
 
-                http.setRequestProperty("Content-Type","application/json;charset=utf-8");
-                http.setRequestProperty("X-Request-With","XMLHttpRequest");
 
                 http.connect();
 
-                out = new BufferedOutputStream(http.getOutputStream());
-                out.write(message.getBytes());
-                out.flush();
 
-                in = http.getInputStream();;
 
 
             } catch (IOException e){
