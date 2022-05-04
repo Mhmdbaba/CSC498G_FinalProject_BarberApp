@@ -2,9 +2,9 @@
 
 
 ### Overview
-The barber has the ability to add what he can offer to do for the client including prices and estimated time. <br>
-The job of this  application is to estimate times between the clients to decrease the waiting time between them. <br>
-More features may added through the process. <br>
+:barber: The barber has the ability to add what he can offer to do for the client including prices and estimated time. <br>
+:barber: The job of this  application is to estimate times between the clients to decrease the waiting time between them. <br>
+:barber: More features may added through the process. <br>
 
 ### Features
 
