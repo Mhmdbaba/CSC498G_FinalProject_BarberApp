@@ -1,1 +1,20 @@
-# CSC498G_FinalProject_BarberApp
+# Barber Appointments
+
+
+### Overview
+The barber has the ability to add what he can offer to do for the client including prices and estimated time.
+The job of this  application is to estimate times between the clients to decrease the waiting time between them.
+More features may added through the process.
+
+### Features
+
+- Sign up for an account
+- Sign in using your username
+- Book, cancel, and edit your appointment
+- View the catalogue of products related to the store
+- The admin shall sign in using a specific username and password
+- The admin shall delete any appointment
+- The admin shall add and delete products on the catalogue
+
+
+#### By Mohammad Elbaba
