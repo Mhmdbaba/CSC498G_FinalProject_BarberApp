@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,9 +49,9 @@ public class Register extends AppCompatActivity {
         protected String doInBackground(String... urls) {
             JSONObject jsonObject = new JSONObject();
 
+            String result = "";
             URL url;
             HttpURLConnection http = null;
-            OutputStream out = null;
             InputStream in = null;
 
             try{
@@ -65,20 +66,19 @@ public class Register extends AppCompatActivity {
 
                 //request setup
                 http.setRequestMethod("POST");
-                http.setDoInput(true);
-                http.setDoOutput(true);
-                http.setFixedLengthStreamingMode(message.getBytes().length);
 
-                http.setRequestProperty("Content-Type","application/json;charset=utf-8");
-                http.setRequestProperty("X-Request-With","XMLHttpRequest");
 
                 http.connect();
 
-                out = new BufferedOutputStream(http.getOutputStream());
-                out.write(message.getBytes());
-                out.flush();
+                in = http.getInputStream();
+                InputStreamReader reader = new InputStreamReader(in);
+                int data = reader.read();
 
-                in = http.getInputStream();;
+                while (data != -1){
+                    char current = (char) data;
+                    result += current;
+                    data = reader.read();
+                }
 
 
             } catch (IOException e){
@@ -90,7 +90,6 @@ public class Register extends AppCompatActivity {
             } finally {
 
                 try{
-                    out.close();
                     in.close();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -98,7 +97,8 @@ public class Register extends AppCompatActivity {
                 }
                 http.disconnect();
             }
-            return  null;
+            Log.i("Hello: ", result);
+            return  result;
         }
         protected void onPostExecute (String s){
             super.onPostExecute(s);
@@ -114,10 +114,6 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-    }
-
-    private void checkInDatabase(String s, String type){
-
     }
 
     public void Button(View view){
@@ -143,6 +139,8 @@ public class Register extends AppCompatActivity {
                     Register_db r = new Register_db(reg_name,reg_username,reg_email,reg_password);
                     r.execute(url);
                     //direct to home page if credentials are not found in database
+                    if (cont)
+                        startActivity(new Intent(this,HomePage.class));
                 }
                 else {
                     Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
