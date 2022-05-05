@@ -2,6 +2,7 @@
 
 include("db_info.php");
 
+
 //getting values from POST request
 $username = $_POST["username"];
 $name = $_POST["name"];
@@ -48,8 +49,8 @@ if ($res == 1){
 
     session_start();
     $_SESSION["username"] = $username;
-    $_SESSION["id"] = $response[0]['id'];
-
+    //$_SESSION["id"] = $response[0]['id'];
+    
     echo "true";
 }
 else{

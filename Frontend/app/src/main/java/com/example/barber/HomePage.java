@@ -10,7 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -18,6 +21,12 @@ import java.net.URL;
 public class HomePage extends AppCompatActivity {
 
     TextView tv_admin;
+    String username;
+
+    TextView tv_output_appointment;
+    TextView tv_edit;
+    TextView tv_cancel;
+
 
     public class MainPage extends AsyncTask<String, Void, String> {
 
@@ -27,43 +36,68 @@ public class HomePage extends AppCompatActivity {
             URL url;
             HttpURLConnection http;
 
-            BufferedReader reader;
-            String line;
-            StringBuffer response_content = new StringBuffer();
 
             try {
                 url = new URL(urls[0]);
                 http = (HttpURLConnection) url.openConnection();
 
-                //request setup
-                http.setRequestMethod("GET");
-                http.setConnectTimeout(5000);
-                http.setReadTimeout(5000);
+                InputStream in = http.getInputStream();
 
-                int status = http.getResponseCode();
+                Log.i("onPostExecute: ","hello");
 
-                if (status > 299){
-                    reader = new BufferedReader(new InputStreamReader(http.getErrorStream()));
-                    while ((line = reader.readLine()) != null){
-                        response_content.append(line);
-                    }
-                    reader.close();
-                } else {
-                    reader = new BufferedReader(new InputStreamReader(http.getInputStream()));
-                    while ((line = reader.readLine()) != null){
-                        response_content.append(line);
-                    }
-                    reader.close();
+                InputStreamReader reader = new InputStreamReader(in);
+                int data = reader.read();
+
+                while (data != -1) {
+                    char current = (char) data;
+                    result += current;
+                    data = reader.read();
                 }
 
-            } catch (Exception e){
+            } catch( Exception e) {
                 e.printStackTrace();
                 return null;
             }
-
-            return null;
-        }
+            return result;
     }
+
+    @Override
+        protected void onPostExecute (String s) {
+            super.onPostExecute(s);
+//        Log.i("onPostExecute: ",s);
+
+            try {
+                JSONObject json = new JSONObject(s);
+
+                for (int i = 0; i < json.length(); i++){
+                    if (json.getJSONArray(String.valueOf(i)).getString(0) == username){
+
+                        tv_output_appointment.setVisibility(View.VISIBLE);
+                        tv_edit.setVisibility(View.VISIBLE);
+                        tv_cancel.setVisibility(View.VISIBLE);
+
+                        //display the appointment if any in the user home page
+                        tv_output_appointment.setText(json.getJSONArray(String.valueOf(i)).getString(2) + " " +
+                                json.getJSONArray(String.valueOf(i)).getString(3));
+
+                        break;
+                    } else {
+                        tv_output_appointment.setVisibility(View.INVISIBLE);
+                        tv_edit.setVisibility(View.INVISIBLE);
+                        tv_cancel.setVisibility(View.INVISIBLE);
+                    }
+                }
+
+//                Log.i("onPostExecute: ",s);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return;
+            }
+    }
+
+
+}
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +105,15 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         //tv_admin = (TextView) findViewById(R.id.tv_admin);
         Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
+        username = intent.getStringExtra("username");
+
+        tv_output_appointment = (TextView) findViewById(R.id.output_appointment);
+        tv_edit = (TextView) findViewById(R.id.tv_edit);
+        tv_cancel = (TextView) findViewById(R.id.tv_cancel);
+
         if (!username.equalsIgnoreCase("admin"))
             tv_admin.setVisibility(View.INVISIBLE);
-        String url = "http://192.168.157.1/BarberServer/Register.php";
+        String url = "http://192.168.157.1/BarberServer/homePage.php";
         MainPage r = new MainPage();
         r.execute(url);
     }

@@ -70,31 +70,31 @@
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/pic1" />
+                    app:srcCompat="@drawable/hw1" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/pic1" />
+                    app:srcCompat="@drawable/hw2" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/pic1" />
+                    app:srcCompat="@drawable/hw3" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/pic1" />
+                    app:srcCompat="@drawable/barbershopicon" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/pic1" />
+                    app:srcCompat="@drawable/barbershopicon" />
 
             </LinearLayout>
         </HorizontalScrollView>
@@ -152,31 +152,31 @@
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/treatment" />
+                    app:srcCompat="@drawable/oil1" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/treatment" />
+                    app:srcCompat="@drawable/oil2" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/treatment" />
+                    app:srcCompat="@drawable/oil3" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/treatment" />
+                    app:srcCompat="@drawable/barbershopicon" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/treatment" />
+                    app:srcCompat="@drawable/barbershopicon" />
             </LinearLayout>
         </HorizontalScrollView>
     </ScrollView>
@@ -205,14 +205,14 @@
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/barbershopicon" />
+                    app:srcCompat="@drawable/acc1" />
 
                 <ImageView
                     android:id="@+id/imageView20"
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/barbershopicon" />
+                    app:srcCompat="@drawable/acc2" />
 
                 <ImageView
                     android:id="@+id/imageView21"
@@ -220,7 +220,7 @@
                     android:layout_height="150dp"
                     android:layout_weight="1"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/barbershopicon" />
+                    app:srcCompat="@drawable/acc3" />
 
                 <ImageView
                     android:id="@+id/imageView22"

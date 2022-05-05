@@ -4,18 +4,23 @@ include("db_info.php");
 
 
 
-$query = $conn->prepare('SELECT NAME, CATEGORY, PICTURE, PRICE FROM items WHERE CATEGORY = "Haircuts" and CATEGORY = "Treatments"');
+$query = $conn->prepare('SELECT USERNAME, NAME, DATE, TIME FROM USERSAPPOINTMENTS');
 $query->execute();
 
-$array = $query->get_result();
+$result = $query->get_result();
 
-$response = [];
+$response = array();
 
-while ($arr = $array->fetch_assoc()){
-    $response[] = $arr;
+while ($row = $result->fetch_assoc()){
+    $response[] = $row;
 }
 
-echo json_encode($response);
 
+//get username from first array
+//echo $response[0]["username"];
+
+// print_r ($response);
+
+echo json_encode($response);
 
 ?>

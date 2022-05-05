@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         android:text="Barbers"
         android:textSize="60sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -54,10 +55,10 @@
         android:layout_height="33dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.308"
+        app:layout_constraintHorizontal_bias="0.255"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintVertical_bias="0.191"
         app:srcCompat="@drawable/point" />
 
     <Button
@@ -93,6 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:minHeight="48dp"
         android:onClick="Button"
         android:tag="logout"
         android:text="Logout"
@@ -109,6 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:minHeight="48dp"
         android:onClick="Button"
         android:tag="admin"
         android:text="Admin"
@@ -144,32 +147,31 @@
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/pic1" />
+                    app:srcCompat="@drawable/haircut1" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/pic1" />
+                    app:srcCompat="@drawable/haircut2" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/pic1" />
+                    app:srcCompat="@drawable/haircut3" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/pic1" />
+                    app:srcCompat="@drawable/haircut4" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/pic1" />
-
+                    app:srcCompat="@drawable/haircut5" />
             </LinearLayout>
         </HorizontalScrollView>
     </ScrollView>
@@ -199,31 +201,31 @@
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/treatment" />
+                    app:srcCompat="@drawable/treatment1" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/treatment" />
+                    app:srcCompat="@drawable/treatment2" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/treatment" />
+                    app:srcCompat="@drawable/treatment3" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/treatment" />
+                    app:srcCompat="@drawable/treatment4" />
 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="150dp"
                     android:paddingRight="10dp"
-                    app:srcCompat="@drawable/treatment" />
+                    app:srcCompat="@drawable/treatment5" />
             </LinearLayout>
         </HorizontalScrollView>
     </ScrollView>
@@ -235,6 +237,7 @@
         android:text="Your appointment here"
         android:textSize="20sp"
         android:visibility="invisible"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"
@@ -250,6 +253,7 @@
         android:onClick="Appointment"
         android:tag="cancel"
         android:text="Cancel"
+        android:textColor="@color/black"
         android:textStyle="italic"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -267,6 +271,7 @@
         android:onClick="Appointment"
         android:tag="edit"
         android:text="Edit"
+        android:textColor="@color/black"
         android:textStyle="italic"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
